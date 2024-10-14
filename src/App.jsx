@@ -1,31 +1,24 @@
-
-import { Route, Routes } from "react-router-dom"
-import Sidebar from "./components/Sidebar.jsx"
-import Favoritepage from "./pages/Favoritepage.jsx"
-import Homepage from "./pages/Homepage.jsx"
-
-
+import { Route, Routes } from "react-router-dom";
+import Sidebar from "./components/Sidebar.jsx";
+import FavoritePage from "./pages/Favoritepage.jsx";
+import HomePage from "./pages/Homepage.jsx";
+import SignIn from "./components/Authentication/SignIn.jsx";
+import SignUp from "./components/Authentication/SignUp.jsx"; 
+import VerifyForm from "./components/Authentication/VerifyForm.jsx"; 
 function App() {
-  
-
   return (
     <>
-    <div >
- <h1 className="flex ">
-      <Sidebar/>
-      <Routes>
-        <Route path="/" element={<Homepage />} />
-        <Route path="/favorites" element={<Favoritepage />} />
-        
-      </Routes>
-      
-
-    </h1>
-   
-      
-    </div>
+      <div>
+        <Routes>
+          <Route path="/verify"element={<VerifyForm/>}/>
+          <Route path="/" element={<SignIn />} />
+          <Route path="/signup" element={<SignUp />} /> 
+          <Route path="/home" element={<HomePage />} />
+          <Route path="/favorites" element={<FavoritePage />} /> 
+        </Routes>
+      </div>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
