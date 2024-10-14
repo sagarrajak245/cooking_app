@@ -51,7 +51,7 @@ const RecipeCard = ({ recipe, bg, badge }) => {
         ]
       }, {
         headers: {
-          "Authorization": `Bearer YOUR_API_KEY_HERE`,
+          "Authorization": "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",
           "Content-Type": "application/json"
         }
       });
