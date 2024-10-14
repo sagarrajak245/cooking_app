@@ -1,7 +1,7 @@
 import { Heart, Home } from 'lucide-react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo.svg'; // Correct path
-import mobileLogo from '../assets/mobile-logo.svg'; // Correct path
+import logo from '../assets/logo.svg';
+import mobileLogo from '../assets/mobile-logo.svg'; 
 
 function Sidebar() {
   return (

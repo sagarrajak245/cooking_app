@@ -5,8 +5,9 @@ const getTwoValuesFromArray = (arr) => {
   return [arr[0], arr[1]];
 };
 
-const RecipeCard = ({ recipe, bg, badge }) => {
+const RecipeCard = ({ recipe, bg, badge, onHover }) => {
   const [isFavorite, setIsFavorite] = useState(false);
+  const [isHovering, setIsHovering] = useState(false);
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -31,8 +32,21 @@ const RecipeCard = ({ recipe, bg, badge }) => {
 
   const healthLabels = getTwoValuesFromArray(recipe.healthLabels);
 
+  const handleMouseEnter = () => {
+    setIsHovering(true);
+    onHover(recipe.uri.split('#')[1]);
+  };
+
+  const handleMouseLeave = () => {
+    setIsHovering(false);
+  };
+
   return (
-    <div className={`flex flex-col rounded-md ${bg} overflow-hidden p-3 relative`}>
+    <div
+      className={`flex flex-col rounded-md ${bg} overflow-hidden p-3 relative`}
+      onMouseEnter={handleMouseEnter}
+      onMouseLeave={handleMouseLeave}
+    >
       <a
         href={`https://www.youtube.com/results?search_query=${recipe.label} recipe`}
         target="_blank"
@@ -80,6 +94,15 @@ const RecipeCard = ({ recipe, bg, badge }) => {
           </div>
         ))}
       </div>
+
+      
+      {isHovering && (
+        <div className="absolute top-0 left-0 bg-white rounded-md shadow-lg p-3 z-10">
+          <h3 className="font-bold">{recipe.label}</h3>
+          <p className="text-sm">{recipe.description}</p>
+          
+        </div>
+      )}
     </div>
   );
 };
