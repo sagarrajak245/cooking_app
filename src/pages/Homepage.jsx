@@ -41,16 +41,16 @@ function Homepage() {
     }
   };
 
- useEffect(() => {
+  useEffect(() => {
     fetchRecipes("chicken");
   }
   , []);
 
 
 const handlesearchrecipie=(e)=>{
-  e.preventDefault();
+    e.preventDefault();
   const searchQuery=e.target[0].value;
-  fetchRecipes(searchQuery);
+    fetchRecipes(searchQuery);
 }
 
 
@@ -82,26 +82,26 @@ const handlesearchrecipie=(e)=>{
         <div className="grid gap-3 grid-cols-1 md:grid-cols-2 lg:grid-cols-3">
          
 
-        {!loading && 
-						recipes.map(({ recipe }, index) => (
+          {!loading &&
+            recipes.map(({ recipe }, index) => (
 							<ReceipieCard  key={index} recipe={recipe} {...getRandomColor()}  />
-						))}
+            ))}
 
 
 
 
 
-        {loading &&
-						[...Array(9)].map((_, index) => (
-							<div key={index} className='flex flex-col gap-4 w-full'>
-								<div className='skeleton h-32 w-full'></div>
-								<div className='flex justify-between'>
-									<div className='skeleton h-4 w-28'></div>
-									<div className='skeleton h-4 w-24'></div>
-								</div>
-								<div className='skeleton h-4 w-1/2'></div>
-							</div>
-						))}
+          {loading &&
+            [...Array(9)].map((_, index) => (
+              <div key={index} className='flex flex-col gap-4 w-full'>
+                <div className='skeleton h-32 w-full'></div>
+                <div className='flex justify-between'>
+                  <div className='skeleton h-4 w-28'></div>
+                  <div className='skeleton h-4 w-24'></div>
+                </div>
+                <div className='skeleton h-4 w-1/2'></div>
+              </div>
+            ))}
 
 
 

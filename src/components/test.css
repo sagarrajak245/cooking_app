@@ -1,0 +1,50 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 200vh; 
+  }
+  
+  .animated-shape {
+    width: 200px;
+    height: 200px;
+    background-color: coral;
+    position: relative;
+    transition: border-radius 0.5s, transform 0.5s;
+    border-radius: 0;
+    transform: translate(0, 0);
+  }
+  
+  .animate {
+    animation: rectangleToSquare 2s 1s infinite alternate;
+  }
+  
+  @keyframes rectangleToSquare {
+    0% {
+      border-radius: 0;
+      transform: translate(0, 0);
+    }
+    25% {
+      border-radius: 30px;
+      transform: translate(-50px, 0);
+    }
+    50% {
+      border-radius: 30px;
+      transform: translate(-50px, -50px);
+      width: 200px;
+      height: 200px;
+    }
+    75% {
+      border-radius: 30px;
+      transform: translate(-50px, -50px);
+      width: 200px;
+      height: 200px;
+    }
+    100% {
+      border-radius: 50%;
+      width: 200px;
+      height: 200px;
+      transform: translate(-50px, -50px);
+    }
+  }
+  
