@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import RecipeCard from "../components/ReceipieCard.jsx"; // Ensure correct import name (corrected from 'ReceipieCard' to 'RecipeCard')
-import RecipeDetail from '../components/RecipeDetailes.jsx'; // Corrected component name
+import RecipeCard from "../components/ReceipieCard"; // Ensure correct import name (corrected from 'ReceipieCard' to 'RecipeCard')
+import RecipeDetail from '../components/RecipeDetailes'; // Corrected component name
 import { getRandomColor } from '../lib/utils.js';
 import axios from 'axios';
 import { Search } from "lucide-react";
@@ -44,7 +44,7 @@ const Homepage = () => {
   };
 
   useEffect(() => {
-    fetchRecipes("chicken");
+    fetchRecipes("gulab jamun");
   }, []);
 
   const handleSearchRecipe = (e) => {

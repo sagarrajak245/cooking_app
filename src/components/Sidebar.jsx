@@ -31,6 +31,14 @@ const DesktopSidebar = () => {
             <Heart size={"24"} />
             <span className="font-bold hidden md:block">Favorites</span>
           </Link>
+          <Link to="/Restaurant" className="flex gap-1">
+            <Home size={"24"} />
+            <span className="font-bold hidden md:block">Restaurants</span>
+          </Link>
+          <Link to="/favorites" className="flex gap-1">
+            <Heart size={"24"} />
+            <span className="font-bold hidden md:block">Hotels</span>
+          </Link>
         </ul>
       </div>
     </div>

@@ -5,6 +5,10 @@ import HomePage from "./pages/Homepage.jsx";
 import SignIn from "./components/Authentication/SignIn.jsx";
 import SignUp from "./components/Authentication/SignUp.jsx"; 
 import VerifyForm from "./components/Authentication/VerifyForm.jsx"; 
+import Restaurant from "./components/Restaurants/GetRestaurants.jsx"
+import RestaurantComponent  from "./pages/Restaurant.jsx";
+import RestaurantDetails from "./components/Restaurants/RestaurantDetails.jsx";
+
 function App() {
   return (
     <>
@@ -15,6 +19,7 @@ function App() {
           <Route path="/signup" element={<SignUp />} /> 
           <Route path="/home" element={<HomePage />} />
           <Route path="/favorites" element={<FavoritePage />} /> 
+<Route path="/restaurant" element={<RestaurantComponent />}></Route>
         </Routes>
       </div>
     </>
