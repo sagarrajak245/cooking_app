@@ -1,3 +1,11 @@
+
+
+
+
+//api
+
+
+import axios from 'axios'; // Add axios for making HTTP requests
 import { Heart, HeartPulse, Soup } from "lucide-react";
 import { useEffect, useState } from "react";
 
@@ -5,9 +13,10 @@ const getTwoValuesFromArray = (arr) => {
   return [arr[0], arr[1]];
 };
 
-const RecipeCard = ({ recipe, bg, badge, onHover }) => {
+const RecipeCard = ({ recipe, bg, badge }) => {
   const [isFavorite, setIsFavorite] = useState(false);
-  const [isHovering, setIsHovering] = useState(false);
+  const [showDialog, setShowDialog] = useState(false);
+  const [recipeDetails, setRecipeDetails] = useState("");
 
   useEffect(() => {
     const favorites = JSON.parse(localStorage.getItem("favorites")) || [];
@@ -32,21 +41,34 @@ const RecipeCard = ({ recipe, bg, badge, onHover }) => {
 
   const healthLabels = getTwoValuesFromArray(recipe.healthLabels);
 
-  const handleMouseEnter = () => {
-    setIsHovering(true);
-    onHover(recipe.uri.split('#')[1]);
+  const fetchRecipeDetails = async () => {
+    try {
+      const response = await axios.post('https://api.openai.com/v1/chat/completions', {  // Replace with your OpenAI API key
+        model: "gpt-3.5-turbo",
+        messages: [
+          { role: "system", content: "You are a helpful assistant." },
+          { role: "user", content: `Provide detailed information and preparation steps for the recipe: ${recipe.label}.` }
+        ]
+      }, {
+        headers: {
+          "Authorization": `Bearer YOUR_API_KEY_HERE`,
+          "Content-Type": "application/json"
+        }
+      });
+
+      setRecipeDetails(response.data.choices[0].message.content);
+    } catch (error) {
+      console.error("Error fetching recipe details:", error);
+    }
   };
 
-  const handleMouseLeave = () => {
-    setIsHovering(false);
+  const handleRecipeButtonClick = async () => {
+    await fetchRecipeDetails();
+    setShowDialog(true);
   };
 
   return (
-    <div
-      className={`flex flex-col rounded-md ${bg} overflow-hidden p-3 relative`}
-      onMouseEnter={handleMouseEnter}
-      onMouseLeave={handleMouseLeave}
-    >
+    <div className={`flex flex-col rounded-md ${bg} overflow-hidden p-3 relative`}>
       <a
         href={`https://www.youtube.com/results?search_query=${recipe.label} recipe`}
         target="_blank"
@@ -95,12 +117,26 @@ const RecipeCard = ({ recipe, bg, badge, onHover }) => {
         ))}
       </div>
 
-      
-      {isHovering && (
-        <div className="absolute top-0 left-0 bg-white rounded-md shadow-lg p-3 z-10">
-          <h3 className="font-bold">{recipe.label}</h3>
-          <p className="text-sm">{recipe.description}</p>
-          
+      <button
+        onClick={handleRecipeButtonClick}
+        className="mt-2 px-4 py-2 bg-blue-500 text-white rounded-md"
+      >
+        Get Recipe Details
+      </button>
+
+      {/* Dialog box */}
+      {showDialog && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+          <div className="bg-white p-6 rounded-md w-80 max-w-full">
+            <h2 className="text-lg font-bold mb-4">Recipe Details</h2>
+            <p>{recipeDetails}</p>
+            <button
+              onClick={() => setShowDialog(false)}
+              className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md"
+            >
+              Close
+            </button>
+          </div>
         </div>
       )}
     </div>
