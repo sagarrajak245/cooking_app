@@ -1,7 +1,9 @@
-import { Search } from "lucide-react";
-import { useEffect, useState } from 'react';
-import ReceipieCard from "../components/ReceipieCard.jsx"; // Use PascalCase for components
+
+import React, { useEffect, useState } from 'react';
 import { getRandomColor } from '../lib/utils.js';
+
+import { Search } from "lucide-react";
+import ReceipieCard from "../components/ReceipieCard.jsx"; // Use PascalCase for components
 
 
 const appKey ="f8cc86348ecb9a8ae9d35ababf36a011" ;
@@ -42,9 +44,8 @@ function Homepage() {
   };
 
   useEffect(() => {
-    fetchRecipes("chicken");
-  }
-  , []);
+    fetchRecipes("gulab jamun");
+  }, []);
 
 
 const handlesearchrecipie=(e)=>{
