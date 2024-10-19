@@ -126,19 +126,26 @@ const RecipeCard = ({ recipe, bg, badge }) => {
 
       {/* Dialog box */}
       {showDialog && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
-          <div className="bg-white p-6 rounded-md w-80 max-w-full">
-            <h2 className="text-lg font-bold mb-4">Recipe Details</h2>
-            <p>{recipeDetails}</p>
-            <button
-              onClick={() => setShowDialog(false)}
-              className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md"
-            >
-              Close
-            </button>
-          </div>
-        </div>
-      )}
+  <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
+    <div className="bg-white p-6 rounded-md w-80 max-w-full">
+      <h2 className="text-lg font-bold mb-4">Recipe Details</h2>
+      <p>{recipeDetails}</p>
+      <button
+        onClick={() => setShowDialog(false)}
+        className="mt-4 px-4 py-2 bg-red-500 text-white rounded-md"
+      >
+        Close
+      </button>
+    </div>
+  </div>
+)}
+
+
+
+
+
+
+
     </div>
   );
 };
