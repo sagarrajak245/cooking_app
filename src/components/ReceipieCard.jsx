@@ -6,8 +6,11 @@
 
 
 import axios from 'axios'; // Add axios for making HTTP requests
+import { dotenv } from 'dotenv';
 import { Heart, HeartPulse, Soup } from "lucide-react";
 import { useEffect, useState } from "react";
+dotenv.config();
+
 
 const getTwoValuesFromArray = (arr) => {
   return [arr[0], arr[1]];
@@ -51,7 +54,9 @@ const RecipeCard = ({ recipe, bg, badge }) => {
         ]
       }, {
         headers: {
-          "Authorization": "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",
+          // eslint-disable-next-line no-undef
+          "Authorization": `Bearer ${process.env.REACT_APP_OPENAI_API_KEY}`
+,
           "Content-Type": "application/json"
         }
       });

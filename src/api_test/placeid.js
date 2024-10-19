@@ -1,3 +1,4 @@
+import { Buffer } from 'buffer';
 import https from 'https';
 
 const API_KEY = '428b6a3040msh2be13728b051406p15090bjsn4331577da765'; // Your RapidAPI key
