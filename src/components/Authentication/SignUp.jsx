@@ -113,10 +113,9 @@ const LetterAnimation = () => {
         <div className="left-fold"></div>
       </div>
       <div className="shadow"></div>
-      <div className="mt-3 text-center">
-        <Link to="/" className="text-primary">Already have an account? Log in here.</Link>
-      </div>
+  
     </div>
+    
   );
 };
 
